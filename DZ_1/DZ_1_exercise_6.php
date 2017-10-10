@@ -12,3 +12,8 @@ for ($i = 0; $i < $counts; $i++) {
     echo '<p style ="border:1px solid black">' . $cars[$i]['name'] . '<br>' . $cars[$i]['model'] . ' - ' .
         $cars[$i]['speed'] . ' - ' . $cars[$i]['doors'] . ' - ' . $cars[$i]['year'] . '</p>';
 }
+
+/**
+ * как лучше объединять массивы, через array_merge_recursive или как было сделано здесь? Просто array_merge заменяет
+ * значения из схожих ключей, то есть на выходе получим один массив $opel
+ */
