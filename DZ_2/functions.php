@@ -10,11 +10,52 @@ function task1($str_arr, $flag = false)
             echo '<p>' . $item . '</p>';
         }
     }
+    return true;
 }
-/**
- *  в таком виде выводит только первое слово
- * foreach ($str_arr as $item) {
- * return $item;
- * } так происсхолит, потому что return выводит первый элемент и выходит из цикла?
- */
+
 //Задание 2
+function task2($num_arr, $action)
+{
+    $items = count($num_arr);
+    $res = $num_arr[0]; // получаем первый элемент массива
+//    if ($items) {
+//        foreach ($num_arr as $items) {
+//            $item = $items;
+//            if (!(is_numeric($item))) {
+//                echo 'Ошибка ввода: необходимо указать числа';
+//            }
+//        }
+//    }
+     if ($items <= 1) {
+        echo 'Ошибка ввода: необходимо указать минимум 2 числа';
+    } else {
+        switch ($action) {
+            case '+':
+                for ($i = 1; $i < $items; $i++) { // начинаем со второго элемента, первый уже занесли в $res
+                    $res += $num_arr[$i];
+                }
+                return $res;
+                break;
+            case '-':
+                for ($i = 1; $i < $items; $i++) {
+                    $res -= $num_arr[$i];
+                }
+                return $res;
+                break;
+            case '*':
+                for ($i = 1; $i < $items; $i++) {
+                    $res *= $num_arr[$i];
+                }
+                return $res;
+                break;
+            case '/':
+                for ($i = 1; $i < $items; $i++) {
+                    $res /= $num_arr[$i];
+                }
+                return $res;
+                break;
+            default:
+                echo 'Неверно указана операция!';
+        }
+    }
+}
