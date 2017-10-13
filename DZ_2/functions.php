@@ -10,7 +10,6 @@ function task1($str_arr, $flag = false)
             echo '<p>' . $item . '</p>';
         }
     }
-    return true;
 }
 
 //Задание 2
