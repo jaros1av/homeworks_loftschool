@@ -103,3 +103,25 @@ function task3()
     }
     return false;
 }
+// Задание 4
+function task4($tr, $td)
+{
+    if ((is_int($tr)) && (is_int($td))) {
+        echo'<table border="1" style = "text-align:center">';
+        for ($i = 1; $i <= $tr; $i++) {
+            echo '<tr>';
+            for ($j = 1; $j <= $td; $j++) {
+                if (($i == 1) || ($j == 1)) {
+                    echo '<th>' . ($i * $j) . '</th>';
+                } else {
+                    echo '<td>' . ($i * $j) . '</td>';
+                }
+            }
+            echo '</tr>';
+        }
+        echo '</table>';
+    } else {
+        echo 'Ошибка: необходимо передать параметром 2 целых числа!';
+    }
+}
+// Задание 5

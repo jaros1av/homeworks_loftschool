@@ -11,3 +11,6 @@ echo '<br><hr>';
 echo '<p>Задание 3 :</p>';
 echo task3('+', 1, 2.5, 3.9);
 echo '<br><hr>';
+echo '<p>Задание 4 :</p>';
+echo task4(9, 9);
+echo '<br><hr>';
