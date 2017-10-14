@@ -39,6 +39,9 @@ function task2($num_arr, $action)
                 break;
             case '/':
                 for ($i = 1; $i < $items; $i++) {
+                    if ($num_arr[$i] == 0) {
+                        echo 'Делить на ноль нельзя!';
+                    }
                     $res /= $num_arr[$i];
                 }
                 return $res;
@@ -49,4 +52,8 @@ function task2($num_arr, $action)
     } else {
         echo 'необходимо указать минимум два числа';
     }
+}
+//Задание 3
+function task3 () {
+
 }

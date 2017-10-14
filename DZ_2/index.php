@@ -5,6 +5,6 @@ echo '<p>Задание 1 :</p>';
 echo task1($arr, true);
 echo '<br><hr>';
 echo '<p>Задание 2 :</p>';
-$num_arr = [1, 2, 3, 4, 5];
-echo task2($num_arr, '-');
+$num_arr = [1, 4, 0, 4, 5];
+echo task2($num_arr, '/');
 echo '<br><hr>';
