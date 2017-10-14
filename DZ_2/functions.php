@@ -17,17 +17,7 @@ function task2($num_arr, $action)
 {
     $items = count($num_arr);
     $res = $num_arr[0]; // получаем первый элемент массива
-//    if ($items) {
-//        foreach ($num_arr as $items) {
-//            $item = $items;
-//            if (!(is_numeric($item))) {
-//                echo 'Ошибка ввода: необходимо указать числа';
-//            }
-//        }
-//    }
-     if ($items <= 1) {
-        echo 'Ошибка ввода: необходимо указать минимум 2 числа';
-    } else {
+    if ($items > 1) {
         switch ($action) {
             case '+':
                 for ($i = 1; $i < $items; $i++) { // начинаем со второго элемента, первый уже занесли в $res
@@ -56,5 +46,7 @@ function task2($num_arr, $action)
             default:
                 echo 'Неверно указана операция!';
         }
+    } else {
+        echo 'необходимо указать минимум два числа';
     }
 }
