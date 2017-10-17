@@ -133,7 +133,7 @@ function task5($str)
     $str = str_replace(" ", "", $str); //убираем все пробелы в строке(не только с конца)
     $str = mb_convert_encoding($str, "UTF-8", "$encode");
     $str = mb_strtolower($str);
-    echo $str . '<br>';
+//    echo $str . '<br>';
     $str_arr = preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY); // разбиваем в массив регуляркой
     $c = count($str_arr);
     $cc = floor($c / 2);
@@ -155,3 +155,12 @@ $ret = function ($str) {
         echo 'Строка не палиндром';
     }
 };
+
+$today = function () {
+    return date("m.d.Y H:i");
+};
+// вернем метку времени для заданной даты 24.02.2016 00:00:00
+$unxtime = function () {
+    return date("m-d-Y", mktime(0, 0, 2, 02, 24, 2016));
+};
+//задание 7
