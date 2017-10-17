@@ -27,5 +27,5 @@ echo '<p>Задание 5 :</p>';
 //echo '<br><hr>';
 //echo $ret('Топот');
 //echo '<br><hr>';
-echo task5('топот');
-$ret (топот);
+//echo task5('топот');
+$ret (asdsa);
