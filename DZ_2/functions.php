@@ -125,3 +125,33 @@ function task4($tr, $td)
     }
 }
 // Задание 5
+
+
+function task5($str)
+{
+    $encode = mb_detect_encoding($str);
+    $str = str_replace(" ", "", $str); //убираем все пробелы в строке(не только с конца)
+    $str = mb_convert_encoding($str, "UTF-8", "$encode");
+    $str = mb_strtolower($str);
+    echo $str . '<br>';
+    $str_arr = preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY); // разбиваем в массив регуляркой
+    $c = count($str_arr);
+    $cc = floor($c / 2);
+    $in = $cc - 1;
+    $n_str = array_reverse($str_arr);
+    for ($i = 0; $i < $cc; $i++) {
+
+        if ($str_arr[$i] == $n_str[$i]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+$ret = function ($str) {
+    if (task5($str)) {
+        echo 'Строка Палиндром';
+    } else {
+        echo 'Строка не палиндром';
+    }
+};

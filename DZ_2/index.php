@@ -1,3 +1,11 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>multiplication table</title>
+
 <?php
 require 'functions.php';
 $arr = ['интересные', 'домашние', 'задания', 'на курсе'];
@@ -14,3 +22,10 @@ echo '<br><hr>';
 echo '<p>Задание 4 :</p>';
 echo task4(9, 9);
 echo '<br><hr>';
+echo '<p>Задание 5 :</p>';
+//echo task5 ('Topot');
+//echo '<br><hr>';
+//echo $ret('Топот');
+//echo '<br><hr>';
+echo task5('топот');
+$ret (топот);
