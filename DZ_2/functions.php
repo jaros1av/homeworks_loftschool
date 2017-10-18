@@ -147,7 +147,6 @@ function task5($str)
     }
     if ($f != $g) {
         //echo $str_arr[$i] . ' - ' . $n_str[$i] . '<br>';
-        //return true;
         return false;
     }
     return true;
@@ -159,12 +158,49 @@ $ret = function ($str) {
         echo 'Строка не палиндром';
     }
 };
-
+//Задание 6
+// выведем информацию о текущей дате
 $today = function () {
-    return date("m.d.Y H:i");
+    return date("d.m.Y H:i");
 };
 // вернем метку времени для заданной даты 24.02.2016 00:00:00
 $unxtime = function () {
-    return date("m-d-Y", mktime(0, 0, 2, 02, 24, 2016));
+    return date("d.m.Y H:i:s", mktime(0, 0, 0, 02, 24, 2016));
 };
 //задание 7
+function task6 ()
+{
+        $str = 'Карл у Клары украл Кораллы';
+        $char = 'К';
+        return str_replace($char, "", $str);
+}
+function task6_2 ()
+{
+    $str = 'Две бутылки лимонада'; // Заменил и дополнил
+    $old_val = ['Две', 'лимонада'];
+    $new_val = ['Три', 'рома'];
+    return str_replace($old_val ,$new_val , $str);
+}
+//задание 9
+function task8 ($filename)
+{
+    if ($filename) {
+        echo file_get_contents('test.txt');
+    } else {
+        echo 'Имя файла не указано или не корректно';
+    }
+}
+//задание 10
+function task9($filename, $text)
+{
+    // w+ создается если нет файла, можно сначало проверить на существование file_exists() - затем создать w
+    if ($filename && $text) {
+        $handle = fopen($filename, "w+");
+        fwrite($handle, $text);
+        fclose($handle);
+    } else {
+        echo 'Нужно указать имя файла и текст для записи';
+        return false;
+    }
+    return 'Запись прошла успешно' . '<br>' . 'В файл было записвно: ' . file_get_contents($filename);
+}
