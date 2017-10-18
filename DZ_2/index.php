@@ -28,7 +28,7 @@ echo '<p>Задание 5 :</p>';
 //echo $ret('Топот');
 //echo '<br><hr>';
 //echo task5('топот');
-$ret (ToOpot);
+$ret ('Топот ТОПот');
 echo '<br><hr>';
 echo '<p>Задание 6_1 :</p>';
 echo $today ();

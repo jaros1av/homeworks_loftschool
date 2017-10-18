@@ -136,17 +136,21 @@ function task5($str)
 //    echo $str . '<br>';
     $str_arr = preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY); // разбиваем в массив регуляркой
     $c = count($str_arr);
-    $cc = floor($c / 2);
-    $in = $cc - 1;
+    //$cc = floor($c / 2);
+    $in = $c - 1;
+    $f = '';
+    $g = '';
     $n_str = array_reverse($str_arr);
-    for ($i = 0; $i < $cc; $i++) {
-
-        if ($str_arr[$i] == $n_str[$i]) {
-            return true;
-        } else {
-            return false;
-        }
+    for ($i = 0; $i <= $in; $i++) {
+        $f .= $str_arr[$i];
+        $g .= $n_str[$i];
     }
+    if ($f != $g) {
+        //echo $str_arr[$i] . ' - ' . $n_str[$i] . '<br>';
+        //return true;
+        return false;
+    }
+    return true;
 }
 $ret = function ($str) {
     if (task5($str)) {
