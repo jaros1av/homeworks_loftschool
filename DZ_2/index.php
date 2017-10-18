@@ -4,10 +4,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>multiplication table</title>
-
+    <title>DZ 2</title>
+</head>
 <?php
-require 'functions.php';
+require_once 'functions.php';
 $arr = ['интересные', 'домашние', 'задания', 'на курсе'];
 echo '<p>Задание 1 :</p>';
 echo task1($arr, true);
@@ -51,3 +51,6 @@ echo '<br><hr>';
 echo '<p>Задание 10 :</p>';
 echo task9('anothertest.txt', 'Hello again!');
 echo '<br><hr>';
+?>
+    </body>
+</html>

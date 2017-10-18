@@ -123,6 +123,7 @@ function task4($tr, $td)
     } else {
         echo 'Ошибка: необходимо передать параметром 2 целых числа!';
     }
+    return false;
 }
 // Задание 5
 
@@ -168,7 +169,7 @@ $unxtime = function () {
     return date("d.m.Y H:i:s", mktime(0, 0, 0, 02, 24, 2016));
 };
 //задание 7
-function task6 ()
+function task6()
 {
         $str = 'Карл у Клары украл Кораллы';
         $char = 'К';
@@ -201,6 +202,7 @@ function task7($s)
             return 'количество пакетов < 1000';
         }
     }
+    return false;
 }
 
 function print_smile()
@@ -209,7 +211,7 @@ function print_smile()
     echo $smile;
 }
 //задание 9
-function task8 ($filename)
+function task8($filename)
 {
     if ($filename) {
         echo file_get_contents('test.txt');
