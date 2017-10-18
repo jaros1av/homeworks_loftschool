@@ -174,12 +174,39 @@ function task6 ()
         $char = 'К';
         return str_replace($char, "", $str);
 }
-function task6_2 ()
+
+function task6_2()
 {
     $str = 'Две бутылки лимонада'; // Заменил и дополнил
     $old_val = ['Две', 'лимонада'];
     $new_val = ['Три', 'рома'];
-    return str_replace($old_val ,$new_val , $str);
+    return str_replace($old_val, $new_val, $str);
+}
+//задание 8
+function task7($s)
+{
+    $packets = preg_match("#packets:[0-9]{1,6}#", $s, $matches_p);
+    $smile = preg_match("#[:)]{2,2}#", $s, $matches_s);
+    if ($smile) {
+        //$str_smile = $matches_s[0]; // заносим первый элемент в строку
+        //echo $str_smile;
+        print_smile();
+    } else {
+        $str_pack = $matches_p[0]; // заносим первый элемент в строку
+        $pack = explode(":", $str_pack); // разделяем строку на массив
+        $num = $pack[1]; // получаем колличество пакетов
+        if ($num > 1000) {
+            return 'Сеть есть';
+        } else {
+            return 'количество пакетов < 1000';
+        }
+    }
+}
+
+function print_smile()
+{
+    $smile = 'ヽ(•‿•)ノ';
+    echo $smile;
 }
 //задание 9
 function task8 ($filename)
