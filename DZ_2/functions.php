@@ -21,87 +21,99 @@ function task1($str_arr, $flag = false)
 //Задание 2
 function task2($num_arr, $action)
 {
-    $items = count($num_arr);
-    $res = $num_arr[0]; // получаем первый элемент массива
-    if ($items > 1) {
-        switch ($action) {
-            case '+':
-                for ($i = 1; $i < $items; $i++) { // начинаем со второго элемента, первый уже занесли в $res
-                    $res += $num_arr[$i];
-                }
-                return $res;
-                break;
-            case '-':
-                for ($i = 1; $i < $items; $i++) {
-                    $res -= $num_arr[$i];
-                }
-                return $res;
-                break;
-            case '*':
-                for ($i = 1; $i < $items; $i++) {
-                    $res *= $num_arr[$i];
-                }
-                return $res;
-                break;
-            case '/':
-                for ($i = 1; $i < $items; $i++) {
-                    if ($num_arr[$i] == 0) {
-                        echo 'Делить на ноль нельзя!';
+    $is_num = implode('', $num_arr);
+    if (is_numeric($is_num)) {
+        $items = count($num_arr);
+        $res = $num_arr[0]; // получаем первый элемент массива
+        if ($items > 1) {
+            switch ($action) {
+                case '+':
+                    for ($i = 1; $i < $items; $i++) { // начинаем со второго элемента, первый уже занесли в $res
+                        $res += $num_arr[$i];
                     }
-                    $res /= $num_arr[$i];
-                }
-                return $res;
-                break;
-            default:
-                echo 'Неверно указана операция!';
+                    return $res;
+                    break;
+                case '-':
+                    for ($i = 1; $i < $items; $i++) {
+                        $res -= $num_arr[$i];
+                    }
+                    return $res;
+                    break;
+                case '*':
+                    for ($i = 1; $i < $items; $i++) {
+                        $res *= $num_arr[$i];
+                    }
+                    return $res;
+                    break;
+                case '/':
+                    for ($i = 1; $i < $items; $i++) {
+                        if ($num_arr[$i] == 0) {
+                            echo 'Делить на ноль нельзя!';
+                        }
+                        $res /= $num_arr[$i];
+                    }
+                    return $res;
+                    break;
+                default:
+                    echo 'Неверно указана операция!';
+            }
+        } else {
+            echo 'необходимо указать минимум два числа';
         }
+        return false;
     } else {
-        echo 'необходимо указать минимум два числа';
+        echo 'ошибка: В передоваемом параметре должны быть только числа!';
     }
-    return false;
 }
 //Задание 3
 function task3()
 {
     $args = func_get_args();//массив параметров
-    $counts = count($args); // колличество параметров в массиве
-    $res = $args[1]; // получаем второй элемент массива
-    if ($counts >= 3) {
-        switch ($args[0]) {
-            case '+':
-                for ($i = 2; $i < $counts; $i++) { // начинаем со второго элемента, первый уже занесли в $res
-                    $res += $args[$i];
-                }
-                return $res;
-                break;
-            case '-':
-                for ($i = 2; $i < $counts; $i++) {
-                    $res -= $args[$i];
-                }
-                return $res;
-                break;
-            case '*':
-                for ($i = 2; $i < $counts; $i++) {
-                    $res *= $args[$i];
-                }
-                return $res;
-                break;
-            case '/':
-                for ($i = 2; $i < $counts; $i++) {
-                    if ($args[$i] == 0) {
-                        echo 'Делить на ноль нельзя!';
+    $action = array_shift($args);
+    $is_num = implode('', $args);
+    $is_num = str_replace('.', "", $is_num);
+    if (is_numeric($is_num)) {
+        $counts = count($args); // колличество параметров в массиве
+        $res = $args[0]; // получаем второй элемент массива
+        if ($counts >= 2) {
+            switch ($action) {
+                case '+':
+                    for ($i = 1; $i < $counts; $i++) { // начинаем со второго элемента, первый уже занесли в $res
+                        $res += $args[$i];
                     }
-                    $res /= $args[$i];
-                }
-                return $res;
-                break;
-            default:
-                echo 'Неверно указана операция или операция указана не первым параметром!';
+                    return $res;
+                    break;
+                case '-':
+                    for ($i = 1; $i < $counts; $i++) {
+                        $res -= $args[$i];
+                    }
+                    return $res;
+                    break;
+                case '*':
+                    for ($i = 1; $i < $counts; $i++) {
+                        $res *= $args[$i];
+                    }
+                    return $res;
+                    break;
+                case '/':
+                    for ($i = 1; $i < $counts; $i++) {
+                        if ($args[$i] == 0) {
+                            echo 'Делить на ноль нельзя!';
+                        }
+                        $res /= $args[$i];
+                    }
+                    return $res;
+                    break;
+                default:
+                    echo 'Неверно указана операция или операция указана не первым параметром!';
+            }
+        } else {
+            echo 'необходимо указать минимум три параметра';
         }
+        return false;
     } else {
-        echo 'необходимо указать минимум три параметра';
+        echo 'ошибка: В передоваемом параметре должны быть только числа!';
     }
-    return false;
 }
 // Задание 4
 function task4($tr, $td)
