@@ -23,11 +23,6 @@ echo '<p>Задание 4 :</p>';
 echo task4(9, 9);
 echo '<br><hr>';
 echo '<p>Задание 5 :</p>';
-//echo task5 ('Topot');
-//echo '<br><hr>';
-//echo $ret('Топот');
-//echo '<br><hr>';
-//echo task5('топот');
 $ret ('Топот ТОПот');
 echo '<br><hr>';
 echo '<p>Задание 6_1 :</p>';
@@ -51,6 +46,14 @@ echo '<br><hr>';
 echo '<p>Задание 10 :</p>';
 echo task9('anothertest.txt', 'Hello again!');
 echo '<br><hr>';
+echo '<p>Тест :</p>';
+$r = [1,2,3,6,5];
+$t = [1,2,3,4,5];
+if ($t == $r){
+    echo 'Да';
+} else {echo 'Нет';}
+echo '<br><hr>';
+
 ?>
     </body>
 </html>

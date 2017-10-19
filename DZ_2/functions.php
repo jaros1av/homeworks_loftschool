@@ -146,19 +146,17 @@ function task5($str)
     $str = str_replace(" ", "", $str); //убираем все пробелы в строке(не только с конца)
     $str = mb_convert_encoding($str, "UTF-8", "$encode");
     $str = mb_strtolower($str);
-//    echo $str . '<br>';
     $str_arr = preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY); // разбиваем в массив регуляркой
-    $c = count($str_arr);
-    //$cc = floor($c / 2);
-    $in = $c - 1;
-    $f = '';
-    $g = '';
+//    $c = count($str_arr);
+//    $in = $c - 1;
+//    $f = '';
+//    $g = '';
     $n_str = array_reverse($str_arr);
-    for ($i = 0; $i <= $in; $i++) {
-        $f .= $str_arr[$i];
-        $g .= $n_str[$i];
-    }
-    if ($f != $g) {
+//    for ($i = 0; $i <= $in; $i++) {
+//        $f .= $str_arr[$i];
+//        $g .= $n_str[$i];
+//    }
+    if ($str_arr != $n_str) {
         //echo $str_arr[$i] . ' - ' . $n_str[$i] . '<br>';
         return false;
     }
