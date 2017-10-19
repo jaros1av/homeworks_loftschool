@@ -46,14 +46,6 @@ echo '<br><hr>';
 echo '<p>Задание 10 :</p>';
 echo task9('anothertest.txt', 'Hello again!');
 echo '<br><hr>';
-echo '<p>Тест :</p>';
-$r = [1,2,3,6,5];
-$t = [1,2,3,4,5];
-if ($t == $r){
-    echo 'Да';
-} else {echo 'Нет';}
-echo '<br><hr>';
-
 ?>
     </body>
 </html>
