@@ -40,7 +40,8 @@
 //    echo "</pre>";
 //}
 //Задание 2
-function task2 (){
+function task2 ()
+{
     $arr = array(array(1,2,3,4,5,6,7), array(9,8,6,4,2), array('a','b', 'c'));
     $arr_json = json_encode($arr);
     $handle = fopen('output.json', "w+");
@@ -64,4 +65,25 @@ function task2 (){
         }
 
     }
+}
+//Задание 3
+function task3 ()
+{
+    $handle = fopen('ex3.csv', "w");
+    for ($i = 1; $i <= 100; $i++) {
+        $arr[$i] = rand(1, 100);
+    }
+    fputcsv($handle, $arr);
+    fclose($handle);
+    $handle_csv = fopen('ex3.csv', "r");
+    $csv = fgetcsv($handle_csv, 0, ",");
+    foreach ($csv as $num) {
+        if ($num % 2 == 0) {
+//            echo $num . ' ';
+            $even[] = $num;
+        }
+    }
+    $res_even = array_sum($even);
+    echo 'Сумма четных элементов массива csv раняется = ';
+    echo $res_even;
 }
