@@ -1,43 +1,30 @@
 <?php
 function task1()
 {
-//    $xml = simplexml_load_file('data.xml');
-////    foreach ($xml->Address as $address){
-////        $type = $address['Type'];
-////        $name = $address->Name;
-////        $street = $address->Street;
-////        $city = $address->City;
-////        $state = $address->State;
-////        $zip = $address->Zip;
-////        $country = $address->Country;
-////        echo "<p>TypeAddress: $type<br>Name: $name<br>Street: $street<br>
-////        City: $city<br>State: $state<br>Zip: $zip<br>Country: $country</p>";
-////    }
-////    echo $c = count($xml->Address);
-//    $address_info = $xml->xpath("//Address");
-//    $detail_info = $xml->xpath("//DeliveryNotes");
-//    $items = $xml->xpath("//Item");
-//    echo '<pre>';
-//    print_r($items);
-//    echo '</pre>';
-//    $c = count($items);
-//    echo '<table>';
-//    for ($i=0; $i < $c; $i++) {
-//        echo '<tr><td>';
-//        echo $items[$i]['PartNumber'];
-//        echo '</td><td>';
-//        echo $items[$i]['ProductName'];
-//        echo '</td><td>';
-//        echo $items[$i]->Quantity;
-//        echo '</td><td>';
-//        echo $items[$i]->USPrice;
-//        echo '</td><td>';
-//        echo $items[$i]->Comment;
-//        echo '</td><td>';
-//        echo $items[$i]->ShipDate;
-//        echo '</td>';
-//    }
-//  echo '</table>';
+    $xml = simplexml_load_file('data.xml');
+    $items = $xml->xpath("//Item");
+    $address_info = $xml->xpath("//Address");
+    $detail_info = $xml->xpath("//DeliveryNotes");
+    $order = $xml->attributes(); // получение атрибута корневого элемента (или $xml['PurchaseOrderNumber'] итп)
+    echo '<p>Таблица Заказов: </p>';
+    echo '<table border="1" style = "text-align:center">';
+    echo '<tr><th>OrderNumber: ' . $order[0] . '</th><th>OrderDate: ' . $order[1] . '</th><tr>';
+    for ($i = 0, $j = 0; $i < count($items), $j < count($address_info); $i++, $j++) {
+        echo '<tr>';
+        echo '<th>' . 'PartNumber: ' . $items[$i]['PartNumber'] . '</th>';
+        foreach ($items[$i] as $key => $item) {
+            echo '<td>' . $key . ' : ' . $item . '</td>';
+        }
+        echo '</tr>';
+        echo '<tr>';
+        echo '<td>' . 'Address: ' . $address_info [$j]['Type'] . '</td>';
+        foreach ($address_info[$j] as $key => $addr) {
+            echo '<td>' . $key . ' : ' . $addr . '</td>';
+        }
+        echo '</tr>';
+    }
+    echo '<tr><th>DeliveryNotes: ' . '</th>' . '<td>' .$detail_info[0] . '</td></tr>';
+    echo '</table>';
 }
 //Задание 2
 function task2 ()
