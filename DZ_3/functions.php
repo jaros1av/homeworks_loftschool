@@ -1,6 +1,6 @@
 <?php
-//function task1()
-//{
+function task1()
+{
 //    $xml = simplexml_load_file('data.xml');
 ////    foreach ($xml->Address as $address){
 ////        $type = $address['Type'];
@@ -17,28 +17,28 @@
 //    $address_info = $xml->xpath("//Address");
 //    $detail_info = $xml->xpath("//DeliveryNotes");
 //    $items = $xml->xpath("//Item");
-////    $c = count($items);
-////    echo '<table>';
-////    for ($i=0; $i < $c; $i++) {
-////        echo '<tr><td>';
-////        echo $items[$i]['PartNumber'];
-////        echo '</td><td>';
-////        echo $items[$i]->ProductName;
-////        echo '</td><td>';
-////        echo $items[$i]->Quantity;
-////        echo '</td><td>';
-////        echo $items[$i]->USPrice;
-////        echo '</td><td>';
-////        echo $items[$i]->Comment;
-////        echo '</td><td>';
-////        echo $items[$i]->ShipDate;
-////        echo '</td>';
-////    }
-////  echo '</table>';
-//    echo "<pre>";
+//    echo '<pre>';
 //    print_r($items);
-//    echo "</pre>";
-//}
+//    echo '</pre>';
+//    $c = count($items);
+//    echo '<table>';
+//    for ($i=0; $i < $c; $i++) {
+//        echo '<tr><td>';
+//        echo $items[$i]['PartNumber'];
+//        echo '</td><td>';
+//        echo $items[$i]['ProductName'];
+//        echo '</td><td>';
+//        echo $items[$i]->Quantity;
+//        echo '</td><td>';
+//        echo $items[$i]->USPrice;
+//        echo '</td><td>';
+//        echo $items[$i]->Comment;
+//        echo '</td><td>';
+//        echo $items[$i]->ShipDate;
+//        echo '</td>';
+//    }
+//  echo '</table>';
+}
 //Задание 2
 function task2 ()
 {
@@ -86,4 +86,29 @@ function task3 ()
     $res_even = array_sum($even);
     echo 'Сумма четных элементов массива csv раняется = ';
     echo $res_even;
+}
+//Задание 4
+function task4 ()
+{
+    if (file_exists("ex4.json")) {
+        $json = file_get_contents("ex4.json", "r");
+        $json = json_decode($json, true);
+        echo 'PageId: ' . $json['query']['pages']['15580374']['pageid'];
+        echo '<br>';
+        echo 'Title: ' . $json['query']['pages']['15580374']['title'];
+    } else {
+        $ch = curl_init("https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json");
+        $fp = fopen("ex4.json", "w+");
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_exec($ch);
+        curl_close($ch);
+        fclose($fp);
+        echo 'Файл записан!' . '<br>';
+        $json = file_get_contents("ex4.json", "r");
+        $json = json_decode($json, true);
+        echo 'PageId: ' . $json['query']['pages']['15580374']['pageid'];
+        echo '<br>';
+        echo 'Title: ' . $json['query']['pages']['15580374']['title'];
+    }
 }
