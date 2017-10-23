@@ -17,24 +17,25 @@ function task1()
         }
         echo '</tr>';
         echo '<tr>';
-        echo '<td>' . 'Address: ' . $address_info [$j]['Type'] . '</td>';
+        echo '<td>' . 'Address type: ' . $address_info [$j]['Type'] . '</td>';
         foreach ($address_info[$j] as $key => $addr) {
             echo '<td>' . $key . ' : ' . $addr . '</td>';
         }
         echo '</tr>';
     }
-    echo '<tr><th>DeliveryNotes: ' . '</th>' . '<td>' .$detail_info[0] . '</td></tr>';
+    echo '<tr><th>DeliveryNotes: ' . '</th>' . '<td>' . $detail_info[0] . '</td></tr>';
     echo '</table>';
 }
+
 //Задание 2
-function task2 ()
+function task2()
 {
-    $arr = array(array(1,2,3,4,5,6,7), array(9,8,6,4,2), array('a','b', 'c'));
+    $arr = array(array(1, 2, 3, 4, 5, 6, 7), array(9, 8, 6, 4, 2), array('a', 'b', 'c'));
     $arr_json = json_encode($arr);
     $handle = fopen('output.json', "w+");
     fwrite($handle, $arr_json);
     fclose($handle);
-    $arr_2 = array(array(1,22,3,4444,5,6768,7), array(1111,8,6,4,2), array("v","g","c"));
+    $arr_2 = array(array(1, 22, 3, 4444, 5, 6768, 7), array(1111, 8, 6, 4, 2), array("v", "g", "c"));
     $arr_2_json = json_encode($arr_2);
     $handle = fopen('output2.json', "w+");
     fwrite($handle, $arr_2_json);
@@ -50,11 +51,11 @@ function task2 ()
                 echo $output[$i][$ii] . ' - ' . $output2[$j][$jj] . '<br>';
             }
         }
-
     }
 }
+
 //Задание 3
-function task3 ()
+function task3()
 {
     $handle = fopen('ex3.csv', "w");
     for ($i = 1; $i <= 100; $i++) {
@@ -74,8 +75,9 @@ function task3 ()
     echo 'Сумма четных элементов массива csv раняется = ';
     echo $res_even;
 }
+
 //Задание 4
-function task4 ()
+function task4()
 {
     if (file_exists("ex4.json")) {
         $json = file_get_contents("ex4.json", "r");
