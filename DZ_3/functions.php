@@ -54,7 +54,7 @@ function task2()
         $output = json_decode($output, true);
         $output2 = file_get_contents('output2.json');
         $output2 = json_decode($output2, true);
-        echo '<p>В массивах output и output2 были найдены следующие различия в значениях элементов: ' . '<br>';
+        echo '<p> Записан файл output2.<br>В массивах output и output2 были найдены следующие различия в значениях элементов: ' . '<br>';
         for ($i = 0, $j = 0; $i < count($output), $j < count($output2); $i++, $j++) {
             for ($ii = 0, $jj = 0; $ii < count($output[$i]), $jj < count($output2[$j]); $ii++, $jj++) {
                 if ($output[$i][$ii] != $output2[$j][$jj]) {
@@ -63,7 +63,11 @@ function task2()
             }
         }
     } else {
-        echo '<p> Данные массива output не были изменены! ' . '<br>';
+        $arr_2 = file_get_contents('output.json');
+        $handle = fopen('output2.json', "w+"); // записываем как output2
+        fwrite($handle, $arr_2);
+        fclose($handle);
+        echo 'Записан файл output2. Изменений в output и output2 не найдено';
     }
 }
 
