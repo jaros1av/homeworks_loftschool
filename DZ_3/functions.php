@@ -26,31 +26,44 @@ function task1()
     echo '<tr><th>DeliveryNotes: ' . '</th>' . '<td>' . $detail_info[0] . '</td></tr>';
     echo '</table>';
 }
-
 //Задание 2
 function task2()
 {
-    $arr = array(array(1, 2, 3, 4, 5, 6, 7), array(9, 8, 6, 4, 2), array('a', 'b', 'c'));
+    $arr = array(array(1, 6, 9, 4, 3, 6, 7), array(9, 8, 10, 4, 2), array('a', 'c', 'b'));
     $arr_json = json_encode($arr);
     $handle = fopen('output.json', "w+");
     fwrite($handle, $arr_json);
     fclose($handle);
-    $arr_2 = array(array(1, 22, 3, 4444, 5, 6768, 7), array(1111, 8, 6, 4, 2), array("v", "g", "c"));
-    $arr_2_json = json_encode($arr_2);
-    $handle = fopen('output2.json', "w+");
-    fwrite($handle, $arr_2_json);
-    fclose($handle);
-    $output = file_get_contents('output.json');
-    $output = json_decode($output, true);
-    $output2 = file_get_contents('output2.json');
-    $output2 = json_decode($output2, true);
-    echo '<p>В массивах output и output2 были найдены следующие различия в значениях элементов: ' . '<br>';
-    for ($i = 0, $j = 0; $i < count($output), $j < count($output2); $i++, $j++) {
-        for ($ii = 0, $jj = 0; $ii < count($output[$i]), $jj < count($output2[$j]); $ii++, $jj++) {
-            if ($output[$i][$ii] != $output2[$j][$jj]) {
-                echo $output[$i][$ii] . ' - ' . $output2[$j][$jj] . '<br>';
+    if (rand(0, 1) == 1) {
+        $arr_2 = file_get_contents('output.json'); //берем output
+        $arr_2 = json_decode($arr_2, true);
+        $arr_2[0][1] = 90;
+        $arr_2[0][0] = 70;
+        $arr_2[0][4] = 44;
+        $arr_2[1][4] = 'v';
+        $arr_2[1][1] = 80;
+        $arr_2[1][3] = 'n';
+        $arr_2[2][0] = 'r';
+        $arr_2[2][1] = '79';
+        $arr_2[2][2] = 'Y';
+        $arr_2 = json_encode($arr_2);
+        $handle = fopen('output2.json', "w+"); // записываем как output2
+        fwrite($handle, $arr_2);
+        fclose($handle);
+        $output = file_get_contents('output.json');
+        $output = json_decode($output, true);
+        $output2 = file_get_contents('output2.json');
+        $output2 = json_decode($output2, true);
+        echo '<p>В массивах output и output2 были найдены следующие различия в значениях элементов: ' . '<br>';
+        for ($i = 0, $j = 0; $i < count($output), $j < count($output2); $i++, $j++) {
+            for ($ii = 0, $jj = 0; $ii < count($output[$i]), $jj < count($output2[$j]); $ii++, $jj++) {
+                if ($output[$i][$ii] != $output2[$j][$jj]) {
+                    echo $output[$i][$ii] . ' - ' . $output2[$j][$jj] . '<br>';
+                }
             }
         }
+    } else {
+        echo '<p> Данные массива output не были изменены! ' . '<br>';
     }
 }
 
