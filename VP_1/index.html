@@ -8,6 +8,10 @@
     </title>
     <link rel="stylesheet" href="css/vendors.min.css">
     <link rel="stylesheet" href="css/main.min.css">
+    <script src="js/main.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="mains.js"></script>
+    <script src="js/main.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -15,7 +19,7 @@
         <section class="section hero">
           <div class="container">
             <header class="header">
-              <div class="header__logo"><a class="logo" href="#"><img class="logo__icon" src="/img/icons/logo.svg"></a></div>
+              <div class="header__logo"><a class="logo" href="#"><img class="logo__icon" src="img/icons/logo.svg"></a></div>
               <div class="header__menu">
                 <nav class="nav">
                   <ul class="nav__list">
@@ -39,7 +43,7 @@
             </header>
             <div class="hero__container">
               <div class="hero__content">
-                <div class="hero__left"><img class="hero__img" src="/img/content/burger.png" alt=""></div>
+                <div class="hero__left"><img class="hero__img" src="img/content/burger.png" alt=""></div>
                 <div class="hero__right">
                   <div class="section__title">Мы делаем</div>
                   <div class="hero__desc">Натуральные бургеры</div>
@@ -81,7 +85,7 @@
               <li class="best__item">
                 <div class="best__icon">
                   <svg class="best__icon-pic" style="fill: #8ac03e;">
-                    <use xlink:href="./img/sprite/sprite.svg#natural"></use>
+                    <use xlink:href="img/sprite/sprite.svg#natural"></use>
                   </svg>
                 </div>
                 <div class="best__desc">
@@ -99,7 +103,7 @@
             <div class="burger-slider-wrap">
               <div class="burger-slider__controls"><a class="burger-slider__btn burger-slider__btn_next" href="#">
                   <svg class="burger-slider__arrow">
-                    <use xlink:href="./img/sprite/sprite.svg#arrow-scroll"></use>
+                    <use xlink:href="img/sprite/sprite.svg#arrow-scroll"></use>
                   </svg></a><a class="burger-slider__btn burger-slider__btn_prev" href="#">
                   <svg class="burger-slider__arrow">
                     <use xlink:href="img/sprite/sprite.svg#arrow-scroll"></use>
@@ -310,7 +314,7 @@
             </li>
             <li class="reviews__item">
               <div class="review">
-                <div class="review__photo" style="background-image: url('..img/content/reviews/4.jpg');"></div>
+                <div class="review__photo" style="background-image: url('img/content/reviews/4.jpg');"></div>
                 <div class="review__hover">
                   <div class="review__title">Константин Спилберг</div>
                   <div class="review__shorttext">Мысли все о них и о них, о них и о них. Нельзя устоять, невозможно забыть... Никогда не думал, что булочки могут быть такими мягкими, котлетка такой сочной, а сыр таким расплавленным.</div>
@@ -364,7 +368,7 @@
           <div class="container">
             <div class="section__title">Закажите доставку</div>
             <div class="order__form">
-              <form class="order__form-tag" id="order-form">
+              <form method="post" class="order__form-tag" id="order-form">
                 <div class="order__form-col">
                   <div class="order__form-row order__form-row_double">
                     <label class="order__form-block">
@@ -415,12 +419,12 @@
                   <div class="order__form-buttons">
                     <div class="order__form-row">
                       <label class="order__radio">
-                        <input class="order__radio-elem" name="payment" type="radio">
+                        <input class="order__radio-elem" name="payment" type="radio" value="1">
                         <div class="order__radio-fake"></div>
                         <div class="order__radio-title">Потребуется сдача</div>
                       </label>
                       <label class="order__radio">
-                        <input class="order__radio-elem" name="payment" type="radio">
+                        <input class="order__radio-elem" name="payment" type="radio" value="0">
                         <div class="order__radio-fake"></div>
                         <div class="order__radio-title">Оплата по карте</div>
                       </label>
