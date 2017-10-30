@@ -84,7 +84,6 @@ function task3()
     $csv = fgetcsv($handle_csv, 0, ",");
     foreach ($csv as $num) {
         if ($num % 2 == 0) {
-//            echo $num . ' ';
             $even[] = $num;
         }
     }
