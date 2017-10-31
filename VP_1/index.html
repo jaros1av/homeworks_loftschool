@@ -368,32 +368,32 @@
           <div class="container">
             <div class="section__title">Закажите доставку</div>
             <div class="order__form">
-              <form method="post" class="order__form-tag" id="order-form">
+              <form action="sendler.php" method="post" class="order__form-tag" id="order-form">
                 <div class="order__form-col">
                   <div class="order__form-row order__form-row_double">
                     <label class="order__form-block">
                       <div class="order__form-label">Имя</div>
-                      <input class="order__form-input" name="name" type="text" placeholder="">
+                      <input class="order__form-input" name="name" type="text" placeholder="" required>
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Телефон</div>
-                      <input class="order__form-input phone-mask" name="phone" type="text" placeholder="">
+                      <input class="order__form-input phone-mask" name="phone" type="text" placeholder="" required>
                     </label>
                   </div>
                   <div class="order__form-row order__form-row_double">
                     <label class="order__form-block">
                       <div class="order__form-label">email</div>
-                      <input class="order__form-input" name="email" type="email" placeholder="">
+                      <input class="order__form-input" name="email" type="email" placeholder="" required>
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Улица</div>
-                      <input class="order__form-input" name="street" type="text" placeholder="">
+                      <input class="order__form-input" name="street" type="text" placeholder="" required>
                     </label>
                   </div>
                   <div class="order__form-row order__form-row_quatro">
                     <label class="order__form-block">
                       <div class="order__form-label">Дом</div>
-                      <input class="order__form-input" name="home" type="text" placeholder="">
+                      <input class="order__form-input" name="home" type="text" placeholder="" required>
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Корпус</div>
@@ -401,11 +401,11 @@
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Квартира</div>
-                      <input class="order__form-input" name="appt" type="text" placeholder="">
+                      <input class="order__form-input" name="appt" type="text" placeholder="" required>
                     </label>
                     <label class="order__form-block">
                       <div class="order__form-label">Этаж</div>
-                      <input class="order__form-input" name="floor" type="text" placeholder="">
+                      <input class="order__form-input" name="floor" type="text" placeholder="" required>
                     </label>
                   </div>
                 </div>
@@ -419,12 +419,12 @@
                   <div class="order__form-buttons">
                     <div class="order__form-row">
                       <label class="order__radio">
-                        <input class="order__radio-elem" name="payment" type="radio" value="1">
+                        <input class="order__radio-elem" name="payment" type="radio" value="change">
                         <div class="order__radio-fake"></div>
                         <div class="order__radio-title">Потребуется сдача</div>
                       </label>
                       <label class="order__radio">
-                        <input class="order__radio-elem" name="payment" type="radio" value="0">
+                        <input class="order__radio-elem" name="payment" type="radio" value="card">
                         <div class="order__radio-fake"></div>
                         <div class="order__radio-title">Оплата по карте</div>
                       </label>
