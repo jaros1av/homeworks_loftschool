@@ -2,7 +2,8 @@ $(document).ready(function() {
     $('#order-form').on ('submit', function (e) {
         e.preventDefault(); //перехват и отключение стандартных действий браузера
         var data_form = $(this).serialize(); // забираем все из формы
-        $.post({ //  сразу отправка методом пост
+        $.ajax({ //  сразу отправка методом пост
+            type: 'POST',
             url: 'sendler.php',
             data: data_form,
             success: function(){
