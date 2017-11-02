@@ -103,4 +103,9 @@ if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone'])
     catch (PDOException $e) {
         echo $e->getMessage();
     }
+} else {
+    return false;
+//    $err = 'Заказ не оформлен, проверьте правильность заполнения формы!';
+//    $result = ['Error'=>$err];
+//    echo json_encode($result);
 }
