@@ -8,6 +8,8 @@ function clean_date($value)
     $value = htmlspecialchars($value); //спецсимволы в html сущности
     return $value;
 }
+$error = true;
+$errortext = 'Заказ не оформлен, проверьте правильность заполнения формы!';
 if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone']) && !empty($_POST['street'])
     && !empty($_POST['home']) && !empty($_POST['appt']) && !empty($_POST['floor'])) {
     $login = clean_date($_POST['name']);
@@ -103,9 +105,8 @@ if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone'])
     catch (PDOException $e) {
         echo $e->getMessage();
     }
-} else {
-    return false;
-//    $err = 'Заказ не оформлен, проверьте правильность заполнения формы!';
-//    $result = ['Error'=>$err];
-//    echo json_encode($result);
+    $error = false;
 }
+//echo json_encode(['error' =>$error, 'errortext' =>$errortext]);
+$response = ['error' => $error,'errortext' =>$errortext];
+echo json_encode($response);

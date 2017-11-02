@@ -6,12 +6,14 @@ $(document).ready(function() {
             type: 'POST',
             url: 'sendler.php',
             data: data_form,
-            success: function(){
+            success: function(response){
+                var answer = $.parseJSON(response);
+                if (answer.error) {
+                    alert(answer.errortext);
+                } else {
+                    alert('Заказ Оформлен, проверьте Вашу почту');
+                }
                 document.forms['order-form'].reset(); //очищаем форму
-                alert("Заказ Оформлен, проверьте Вашу почту");
-            },
-            error: function (){
-                alert("Заказ не оформлен, проверьте правильность заполнения формы!");
             }
         });
     });
