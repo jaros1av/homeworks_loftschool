@@ -10,8 +10,9 @@ function clean_date($value)
 }
 $error = true;
 $errortext = 'Заказ не оформлен, проверьте правильность заполнения формы!';
-if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone']) && !empty($_POST['street'])
-    && !empty($_POST['home']) && !empty($_POST['appt']) && !empty($_POST['floor'])) {
+if ((!empty($_POST['name']) && (!is_numeric($_POST['name']))) && !empty($_POST['email']) && !empty($_POST['phone'])
+    && (!empty($_POST['street']) && (!is_numeric($_POST['street']))) && (!empty($_POST['home']) && is_numeric($_POST['home']))
+        && (!empty($_POST['appt']) && is_numeric($_POST['appt'])) && (!empty($_POST['floor']) && is_numeric($_POST['floor']))) {
     $login = clean_date($_POST['name']);
     $mail = clean_date($_POST['email']);
     $phone = clean_date($_POST['phone']);
