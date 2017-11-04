@@ -65,6 +65,7 @@
               <input type="password" class="form-control" id="inputPassword3" placeholder="Пароль">
             </div>
           </div>
+          <?php echo 'Ghbdtn'; ?>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-default">Войти</button>
