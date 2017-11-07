@@ -1,27 +1,23 @@
-/**
- * Created by arku on 07.03.2017.
- */
-console.log('Hello, World')
-var selector = "div.starter-template>h1";
+$(document).ready(function() {
+    $('#regform').on ('submit', function (e) {
+        e.preventDefault(); //перехват и отключение стандартных действий браузера
+        var data_form = $(this).serialize(); // забираем все из формы
+        $.ajax({ //  сразу отправка методом пост
+            type: 'POST',
+            url: 'data.php',
+            data: data_form,
+            success: function(response){
+                var answer = $.parseJSON(response);
+                if (answer.error) {
+                    alert(answer.errortext);
+                } else {
+                    alert('Вы зарегистрированы, Авторизуйтесть под своим логином и паролем');
+                }
+                document.forms['regform'].reset(); //очищаем форму
+            }
 
-var zagolovok = $(selector);
-var zagovol_data = zagolovok.html()
-zagolovok.html('ahaha')
-
-console.log(zagovol_data);
-
-$('#returnback').on('click', function(){
-    // zagolovok.html(zagovol_data)
-
-    $.ajax({
-        url: '/data.php',
-        method: 'post',
-        data: {
-            superdata: zagovol_data //$_POST['superdata']
-        }
-    }).done(function (data) {
-        var json = JSON.parse(data);  //JSON.stringify()
-        var str = json.name + ' - ' + json.occupation + json.superdata;
-        zagolovok.html(str)
+        });
     });
-})
+
+
+});

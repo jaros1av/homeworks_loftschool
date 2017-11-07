@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!($_SESSION['authorized'])){
+    header("location: index.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,14 +43,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="index.php">Project name</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Авторизация</a></li>
-            <li><a href="reg.html">Регистрация</a></li>
-            <li><a href="list.html">Список пользователей</a></li>
-            <li><a href="filelist.html">Список файлов</a></li>
+            <li class="active"><a href="index.php">Авторизация</a></li>
+            <li><a href="reg.php">Регистрация</a></li>
+            <li><a href="list.php">Список пользователей</a></li>
+            <li><a href="filelist.php">Список файлов</a></li>
+              <li><a href="edit-profile.php">Добавить данные о себе</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -52,6 +60,7 @@
     <div class="container">
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
       <h2>Информация выводится из списка файлов</h2>
+        <?php echo '<p> Вы зашли как:' . $_SESSION['authorized'] . '</p>';?>
       <table class="table table-bordered">
         <tr>
           <th>Название файла</th>
