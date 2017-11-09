@@ -60,21 +60,51 @@ if (!($_SESSION['authorized'])){
     <div class="container">
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
       <h2>Информация выводится из списка файлов</h2>
-        <?php echo '<p> Вы зашли как:' . $_SESSION['authorized'] . '</p>';?>
-      <table class="table table-bordered">
-        <tr>
+        <?php echo '<p> Вы зашли как:' . $_SESSION['authorized'] . '</p>';
+        try {
+        $pdo = new PDO('mysql:host=localhost;dbname=dz4;charset=utf8', 'root', '');
+        $BD_data = $pdo->query("SELECT users.id, desc_users.photo
+        FROM users INNER JOIN desc_users ON users.id = desc_users.id_users;");
+        $res = $BD_data->FETCHALL(PDO::FETCH_ASSOC);
+        echo '<table class="table table-bordered">';
+            foreach ($res as $val) {
+            $fileid = $val['id'];
+            echo '<tr>';
+                echo "
           <th>Название файла</th>
           <th>Фотография</th>
-          <th>Действия</th>
-        </tr>
-        <tr>
-          <td>1.jpg</td>
-          <td><img src="http://lorempixel.com/people/200/200/" alt=""></td>
-          <td>
-            <a href="">Удалить аватарку пользователя</a>
-          </td>
-        </tr>
-      </table>
+          <th>Действия</th>";
+                echo '</tr>';
+            echo '<tr>';
+                echo '<td>' . $val['photo'] . '</td>';
+                echo '<td><img src='.'"'. 'photo/'. $val['photo']. '"' . '</td>';
+                echo '<td><a href="delete.php?fileid='.$fileid.'">Удалить фотографию</a></td>';
+                echo '</tr>';
+            }
+            echo '</table>';
+        //      echo '<pre>';
+//      print_r($res);
+//      echo '</pre>';
+        //      echo "<br>";
+
+        } catch (PDOException $e) {
+        echo $e->getMessage();
+        }
+        ?>
+<!--      <table class="table table-bordered">-->
+<!--        <tr>-->
+<!--          <th>Название файла</th>-->
+<!--          <th>Фотография</th>-->
+<!--          <th>Действия</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>1.jpg</td>-->
+<!--          <td><img src="http://lorempixel.com/people/200/200/" alt=""></td>-->
+<!--          <td>-->
+<!--            <a href="">Удалить аватарку пользователя</a>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </table>-->
 
     </div><!-- /.container -->
 

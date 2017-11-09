@@ -8,7 +8,6 @@ function clean_date($value)
     $value = htmlspecialchars($value); //спецсимволы в html сущности
     return $value;
 }
-
 if (!empty($_POST['login']) && (!is_numeric($_POST['login']))) {
 //    $login = 'nikola@nik.ru';
     $_SESSION['login'] = clean_date($_POST['login']);
@@ -23,9 +22,17 @@ if (!empty($_POST['login']) && (!is_numeric($_POST['login']))) {
             if (($ress['password'] == $password && $ress['login'] == $login)) {
                 $_SESSION['authorized'] = $_SESSION['login'];
                 header("location: edit-profile.php");
+                exit();
             }
         }
+        sleep(3);
+        header("location: reg.php");
+        exit();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+} else {
+    sleep(3);
+    header("location: index.php");
+    exit();
 }

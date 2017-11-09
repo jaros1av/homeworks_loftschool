@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once "data_auth.php";
+//require_once "data_auth.php";
 if (isset($_SESSION['authorized'])){
-    header("location: filelist.php");
+    header("location: list.php");
 }
 ?>
 <!DOCTYPE html>
