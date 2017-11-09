@@ -16,3 +16,8 @@ body {
 .form-horizontal {
   width: 35%;
 }
+.mystyle {
+  width: 30%;
+  padding: 10px;
+  display: inline-block;
+}

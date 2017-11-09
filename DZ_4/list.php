@@ -60,7 +60,47 @@ if (!($_SESSION['authorized'])){
     <div class="container">
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
       <h2>Информация выводится из базы данных</h2>
-        <?php echo '<p> Вы зашли как:' . $_SESSION['authorized'] . '</p>';?>
+        <?php echo '<p> Вы зашли как:' . $_SESSION['authorized'] . '</p>';
+        try {
+            $pdo = new PDO('mysql:host=localhost;dbname=dz4;charset=utf8', 'root', '');
+            $BD_data = $pdo->query("SELECT users.id, users.login, desc_users.name, desc_users.age, 
+desc_users.description,
+ desc_users.photo
+ FROM users INNER JOIN desc_users ON users.id = desc_users.id_users;");
+            $res = $BD_data->FETCHALL(PDO::FETCH_ASSOC);
+            echo '<table class="table table-bordered">';
+            foreach ($res as $val) {
+                $usid = $val['id'];
+                $exten = explode('-', $val['age']);
+                $date = date(Y);
+                $age = $date - $exten['0'];
+                echo '<tr>';
+                echo "<th>Пользователь(логин)</th>
+          <th>Имя</th>
+          <th>возраст</th>
+          <th>описание</th>
+          <th>Фотография</th>
+          <th>Действия</th>";
+                echo '</tr>';
+                echo '<tr>';
+                echo '<td>' . $val['login'] . '</td>';
+                echo '<td>' . $val['name'] . '</td>';
+                echo '<td>' . $age . '</td>';
+                echo '<td>' . $val['description'] . '</td>';
+                echo '<td><img src='.'"'. 'photo/'. $val['photo']. '"' . '</td>';
+                echo '<td><a href="delete.php?userid='.$usid.'">Удалить пользователя</a></td>';
+                echo '</tr>';
+            }
+            echo '</table>';
+//      echo '<pre>';
+//      print_r($res);
+//      echo '</pre>';
+//      echo "<br>";
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        ?>
       <table class="table table-bordered">
         <tr>
           <th>Пользователь(логин)</th>

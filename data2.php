@@ -43,9 +43,9 @@ if ($_POST['scr'] == 'regform') {
 if ($_POST['scr'] == 'usrform') {
     $error = true;
     $errortext = 'Введены неверные двнные';
-    if ((!empty($_POST['name']) && !is_numeric($_POST['name'])) && (!empty($_POST['day']) && is_numeric($_POST['day']))
-        && (!empty($_POST['mounth']) && is_numeric($_POST['mounth'])) && (!empty($_POST['age'])
-            && is_numeric($_POST['age'])) && (!empty($_POST['description']) && !is_numeric($_POST['description']))) {
+//    if ((!empty($_POST['name']) && !is_numeric($_POST['name'])) && (!empty($_POST['day']) && is_numeric($_POST['day']))
+//        && (!empty($_POST['mounth']) && is_numeric($_POST['mounth'])) && (!empty($_POST['age'])
+//            && is_numeric($_POST['age'])) && (!empty($_POST['description']) && !is_numeric($_POST['description']))) {
         $name = clean_date($_POST['name']);
         $day = clean_date($_POST['day']);
         $mounth = clean_date($_POST['mounth']);
@@ -96,7 +96,7 @@ if ($_POST['scr'] == 'usrform') {
     }
     $response = ['error' => $error, 'errortext' => $errortext];
     echo json_encode($response);
-}
+//}
 
 //$exten = array_pop(explode('.',$_FILES['photo']['name']));// берем расширение (pop возвр послед эл-т array) jpg
 //echo $exten;

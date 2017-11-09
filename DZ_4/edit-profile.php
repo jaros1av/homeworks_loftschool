@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['authorized'])){
-    header("location: index.php");
-    exit();
-}
+//if (!isset($_SESSION['authorized'])){
+//    header("location: index.php");
+//    exit();
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +59,7 @@ if (!isset($_SESSION['authorized'])){
 <div class="container">
 
     <div class="form-container">
-        <form method="post" id="usrform" class="form-horizontal" action="data.php">
+        <form method="post" id="usrform" class="form-horizontal" action="data.php" ENCTYPE="multipart/form-data">
                         <div class="form-group">
                             <label for="nameform" class="col-sm-2 control-label">Имя</label>
                             <div class="col-sm-10">
@@ -70,19 +70,21 @@ if (!isset($_SESSION['authorized'])){
                         <div class="form-group">
                             <label for="ageform" class="col-sm-2 control-label">Дата рождения</label>
                             <div class="col-sm-10">
-                                <input name="age" type="text" class="form-control" id="ageform" placeholder="год-месяц-день">
+                                <input name="day" maxlength="2" type="text" class="form-control mystyle" id="ageform" placeholder="02 - день">
+                                <input name="mounth" maxlength="2" type="text" class="form-control mystyle" id="ageform" placeholder="07 - месяц">
+                                <input name="age" maxlength="4" type="text" class="form-control mystyle" id="ageform" placeholder="1987 - год">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="descform" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10"><input type="text" class="form-control" name="description" id="descform" placeholder="пару слов о себе">
+                            <label for="descform" class="col-sm-2 control-label">О себе</label>
+                            <div class="col-sm-10"><input  name="description"  type="text" class="form-control" id="descform" placeholder="пару слов о себе">
                             </div>
                         </div>
-<!--                        <div class="form-group">-->
-<!--                            <label for="photoform" class="col-sm-2 control-label">Фото</label>-->
-<!--                            <div class="col-sm-10"><input type="file" class="form-control" name="photo" accept="image/jpeg" id="photform" placeholder="фото">-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="photoform" class="col-sm-2 control-label">Фото</label>
+                            <div class="col-sm-10"><input name="photo" type="file" class="form-control" accept="image/jpeg" id="photform" placeholder="фото">
+                            </div>
+                        </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-default">Сохранить</button>
@@ -98,7 +100,7 @@ if (!isset($_SESSION['authorized'])){
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!--<script src="js/main.js"></script>-->
+<script src="js/main.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 </body>

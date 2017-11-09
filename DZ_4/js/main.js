@@ -18,6 +18,24 @@ $(document).ready(function() {
 
         });
     });
+    $('#usrform').on ('submit', function (e) {
+        e.preventDefault(); //перехват и отключение стандартных действий браузера
+        var data_form = $(this).serialize(); // забираем все из формы
+        $.ajax({ //  сразу отправка методом пост
+            type: 'POST',
+            url: 'data.php',
+            data: data_form,
+            success: function(response){
+                var answer = $.parseJSON(response);
+                if (answer.error) {
+                    alert(answer.errortext);
+                } else {
+                    alert('Данные Добавлены');
+                }
+                document.forms['usrform'].reset(); //очищаем форму
+            }
 
+        });
+    });
 
 });

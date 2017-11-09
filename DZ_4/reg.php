@@ -60,7 +60,7 @@ if ($_SESSION['authorized']){
     <div class="container">
 
       <div class="form-container">
-        <form method="post" id="regform" class="form-horizontal">
+        <form method="post" id="regform" class="form-horizontal" action="data.php">
           <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Логин</label>
                 <div class="col-sm-10">
