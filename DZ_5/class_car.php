@@ -1,20 +1,45 @@
 <?php
-
-trait engine
+//
+//trait engine
+//{
+//    public function en($speed, $direction)
+//    {
+//        if ($speed <= 20 && $direction == 'вперед') {
+//            echo 'Включена первая передача';
+//        }
+//    }
+//}
+class Engine
 {
-    public function en($speed, $direction)
+    public static $temp = 0;
+
+    public function setOrCoolTemp($count_move)
     {
-        if ($speed <= 20 && $direction == 'вперед') {
-            echo 'Включена первая передача';
+        if ($count_move == 10) {
+            self::$temp += $count_move;
+            if (self::$temp >=90){
+//                echo 'текущая температура двигателя' . self::$temp;
+                echo 'была вкючена система охлаждения';
+                self::$temp -= 5;
+            }
         }
+        return self::$temp;
     }
+
+//    public function cooling()
+//    {
+//        if(self::$temp >=90){
+//            echo 'Включена система охлаждения';
+//            self::$temp -= 5;
+//            return self::$temp;
+//        }
+//    }
 }
-class Car
+class Car extends Engine
 {
     public $distance;
     public $speed;
     public $direction;
-    public $en_temp = 0;
     public static $count_move = 0;
 //    public $transmission;
 //    use engine;
@@ -30,19 +55,15 @@ class Car
         for ($s = $speed; $s <= $distance; $s ++) {
 //            for ($s = $speed; $s <= $distance; $s ++) {
             echo 'проехал ' . $s . ' м' . '<br>';
-            echo self::$count_move .'<br>';
-            self::$count_move++;
+//            echo self::$count_move .'<br>';
             if(self::$count_move == 10){
-                $this->$en_temp = 10;
+                echo $this->setOrCoolTemp(self::$count_move);
+                self::$count_move = 0;
             }
+            self::$count_move++;
+//            echo $this->cooling();
         }
-       echo $this->en_temp;
     }
-
-//        for ($s = $speed; $s <= $distance; $s += $speed) {
-//        for ($s = $speed; $s <= $distance; $s ++) {
-//            echo 'проехал ' . $s . ' м' . '<br>';
-//        }
 
 }
 class Niva extends Car
@@ -51,4 +72,4 @@ class Niva extends Car
 }
 
 $niva = new Niva();
-$niva->move(20, 14, 'вперед');
+$niva->move(120, 10, 'вперед');
