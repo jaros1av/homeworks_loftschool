@@ -4,14 +4,14 @@ class Engine
 {
     public static $temp = 0;
 
-    public function setOrCoolTemp($count_move)
+    public function setOrCoolTemp()
     {
 //        echo $count_move;
-        self::$temp += $count_move;
+        self::$temp += 5;
         if (self::$temp >= 90) {
             echo 'текущая температура двигателя ' . self::$temp . '<br>';
             echo 'была вкючена система охлаждения, ';
-            self::$temp -= 5;
+            self::$temp -= 10;
 //            echo 'температура двигателя: ' . self::$temp . '<br>';
         }
         return 'температура двигателя: ' . self::$temp . '<br>';
@@ -58,7 +58,7 @@ class Car extends Engine
                 echo 'проехал ' . $s . ' м' . '<br>';
 //            echo self::$count_move .'<br>';
                 if (self::$count_move == 10) {
-                    echo $this->setOrCoolTemp(self::$count_move);
+                    echo $this->setOrCoolTemp();
                     self::$count_move = 0;
                 }
                 self::$count_move++;
