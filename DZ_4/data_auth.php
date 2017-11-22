@@ -14,7 +14,7 @@ if (!empty($_POST['login']) && (!is_numeric($_POST['login']))) {
     $login = $_SESSION['login'];
     $password = clean_date($_POST['password']);
     $password = crypt("$password", "123");
-    try {
+    try {$pdo = Db::getInstance();
         $pdo = new PDO('mysql:host=localhost;dbname=dz4;charset=utf8', 'root', '');
         $usr = $pdo->query("SELECT login, password FROM users where login ='$login'");
         $res = $usr->FETCHALL(PDO::FETCH_ASSOC);
