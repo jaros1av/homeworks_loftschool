@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 09 2017 г., 14:05
+-- Время создания: Ноя 23 2017 г., 17:00
 -- Версия сервера: 5.7.16-log
 -- Версия PHP: 7.0.14
 
@@ -40,7 +40,11 @@ CREATE TABLE `desc_users` (
 --
 
 INSERT INTO `desc_users` (`id`, `id_users`, `name`, `age`, `description`, `photo`) VALUES
-(9, 5, 'Николай', '1988-12-12', 'прогер', NULL);
+(7, 17, 'Людвиг', '1987-09-12', 'программист', '17_1.jpg'),
+(9, 18, 'Стивен', '1967-07-22', 'тестировщик', '18_3.jpg'),
+(11, 19, 'Девид', '1972-05-13', 'тимлид', '19_4.jpg'),
+(13, 20, 'Арнольд', '1988-11-30', 'редактор', '20_5.jpg'),
+(17, 21, 'Мартин2', '1993-12-13', 'инженер2', '21_5.jpg');
 
 -- --------------------------------------------------------
 
@@ -63,7 +67,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `name`, `age`, `description`, `photo`) VALUES
-(5, 'nikola@nik.ru', '12HZjDM2C1yEc', NULL, NULL, NULL, NULL);
+(17, 'user@u2.test', '12EQqrQq.4CTM', NULL, NULL, NULL, NULL),
+(18, 'user@u3.test', '121MNWGBNigr.', NULL, NULL, NULL, NULL),
+(19, 'user@u4.test', '12JEMvk0JITBI', NULL, NULL, NULL, NULL),
+(20, 'user@u5.test', '12Mmdj2nuP.o.', NULL, NULL, NULL, NULL),
+(21, 'user@u.test', '12IbR.gJ8wcpc', NULL, NULL, NULL, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -91,12 +99,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `desc_users`
 --
 ALTER TABLE `desc_users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
