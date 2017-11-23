@@ -1,9 +1,15 @@
 <?php
 session_start();
-//if (!isset($_SESSION['authorized'])){
-//    header("location: index.php");
-//    exit();
-//}
+require_once 'connDB.php';
+$login = $_SESSION['authorized'];
+if (!isset($_SESSION['authorized'])){
+    header("location: index.php");
+    exit();
+}
+if (isset($_GET['exit'])) {
+    unset($_SESSION['authorized']);
+    header("location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,13 +57,52 @@ session_start();
                 <li><a href="reg.php">Регистрация</a></li>
                 <li><a href="list.php">Список пользователей</a></li>
                 <li><a href="filelist.php">Список файлов</a></li>
+                <?php if (isset($_SESSION['authorized'])) {
+                    echo '<li><a href="edit-profile.php?exit=ex">выйти</a></li>';
+                } ?>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <div class="container">
+    <article style="text-align:center;margin-top:30px;">
+        <?php try {
+            $idU = $pdo->query("SELECT id FROM users where login = '$login'");
+            $idU = $idU->FETCH(PDO::FETCH_ASSOC);
+            $idU = $idU['id'];
+            $BD_data = $pdo->query("SELECT desc_users.name,desc_users.age, desc_users.description,
+ desc_users.photo
+        FROM desc_users WHERE id_users = '$idU'");
+            $res = $BD_data->FETCHALL(PDO::FETCH_ASSOC);
+            echo '<table class="table table-bordered">';
+            foreach ($res as $val) {
+                $exten = explode('-', $val['age']);
+                $date = date(Y);
+                $age = $date - $exten['0'];
+                echo '<tr>';
+                echo "<th>Пользователь(логин)</th>
+                <th>Имя</th>
+                <th>возраст</th>
+                <th>описание</th>
+                <th>Фотография</th>";
+                echo '</tr>';
+                echo '<tr>';
+                echo '<td>' . $val['name'] . '</td>';
+                echo '<td>' . $val['age'] . '</td>';
+                echo '<td>' . $age . '</td>';
+                echo '<td>' . $val['description'] . '</td>';
+                echo '<td><img src=' . '"' . 'photo/' . $val['photo'] . '"' . '</td>';
+//                echo '<td><a href="delete.php?userid=' . $idU . '">Удалить пользователя</a></td>';
+                echo '</tr>';
+            }
+            echo '</table>';
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        ?>
 
+    </article>
     <div class="form-container">
         <form method="post" id="usrform" class="form-horizontal" action="data.php" ENCTYPE="multipart/form-data">
                         <div class="form-group">
@@ -70,9 +115,10 @@ session_start();
                         <div class="form-group">
                             <label for="ageform" class="col-sm-2 control-label">Дата рождения</label>
                             <div class="col-sm-10">
-                                <input name="day" maxlength="2" type="text" class="form-control mystyle" id="ageform" placeholder="02 - день">
-                                <input name="mounth" maxlength="2" type="text" class="form-control mystyle" id="ageform" placeholder="07 - месяц">
-                                <input name="age" maxlength="4" type="text" class="form-control mystyle" id="ageform" placeholder="1987 - год">
+                                <input name="age" maxlength="15" type="text" class="form-control mystyle" id="ageform" placeholder="день-месяц-год">
+<!--                                <input name="day" maxlength="2" type="text" class="form-control mystyle" id="ageform" placeholder="02 - день">-->
+<!--                                <input name="mounth" maxlength="2" type="text" class="form-control mystyle" id="ageform" placeholder="07 - месяц">-->
+<!--                                <input name="age" maxlength="4" type="text" class="form-control mystyle" id="ageform" placeholder="1987 - год">-->
                             </div>
                         </div>
                         <div class="form-group">
@@ -87,7 +133,8 @@ session_start();
                         </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Сохранить</button>
+                    <button type="submit" name="saveebut" class="btn btn-default">Сохранить</button>
+                    <button type="submit" name="updatebut" class="btn btn-default">Обновить</button>
                 </div>
             </div>
         </form>
@@ -100,7 +147,7 @@ session_start();
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/main.js"></script>
+<!--<script src="js/main.js"></script>-->
 <script src="js/bootstrap.min.js"></script>
 
 </body>

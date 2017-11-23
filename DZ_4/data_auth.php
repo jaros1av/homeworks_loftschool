@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'connDB.php';
 function clean_date($value)
 {
     $value = trim($value); // убираем пробелы
@@ -14,8 +15,7 @@ if (!empty($_POST['login']) && (!is_numeric($_POST['login']))) {
     $login = $_SESSION['login'];
     $password = clean_date($_POST['password']);
     $password = crypt("$password", "123");
-    try {$pdo = Db::getInstance();
-        $pdo = new PDO('mysql:host=localhost;dbname=dz4;charset=utf8', 'root', '');
+    try {
         $usr = $pdo->query("SELECT login, password FROM users where login ='$login'");
         $res = $usr->FETCHALL(PDO::FETCH_ASSOC);
         foreach ($res as $ress) {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['authorized']){
-    header("location: filelist.php");
+    header("location: list.php");
     exit;
 }
 ?>

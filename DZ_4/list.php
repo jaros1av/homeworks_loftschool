@@ -1,8 +1,13 @@
 <?php
 session_start();
+require_once 'connDB.php';
 if (!($_SESSION['authorized'])){
     header("location: index.php");
     exit;
+}
+if (isset($_GET['exit'])) {
+    unset($_SESSION['authorized']);
+    header("location: index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -52,6 +57,9 @@ if (!($_SESSION['authorized'])){
             <li><a href="list.php">Список пользователей</a></li>
             <li><a href="filelist.php">Список файлов</a></li>
               <li><a href="edit-profile.php">Добавить данные о себе</a></li>
+              <?php if (isset($_SESSION['authorized'])) {
+                  echo '<li><a href="list.php?exit=ex">выйти</a></li>';
+              } ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -62,7 +70,6 @@ if (!($_SESSION['authorized'])){
       <h2>Информация выводится из базы данных</h2>
         <?php echo '<p> Вы зашли как:' . $_SESSION['authorized'] . '</p>';
         try {
-            $pdo = new PDO('mysql:host=localhost;dbname=dz4;charset=utf8', 'root', '');
             $BD_data = $pdo->query("SELECT users.id, users.login, desc_users.name, desc_users.age, 
 desc_users.description,
  desc_users.photo

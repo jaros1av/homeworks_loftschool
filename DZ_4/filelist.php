@@ -4,6 +4,10 @@ if (!($_SESSION['authorized'])){
     header("location: index.php");
     exit;
 }
+ if (isset($_GET['exit'])) {
+    unset($_SESSION['authorized']);
+    header("location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +56,9 @@ if (!($_SESSION['authorized'])){
             <li><a href="list.php">Список пользователей</a></li>
             <li><a href="filelist.php">Список файлов</a></li>
               <li><a href="edit-profile.php">Добавить данные о себе</a></li>
+              <?php if (isset($_SESSION['authorized'])) {
+                  echo '<li><a href="filelist.php?exit=ex">выйти</a></li>';
+              } ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
