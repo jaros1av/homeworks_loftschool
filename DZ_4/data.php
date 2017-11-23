@@ -112,19 +112,22 @@ if (isset($_POST['updatebut'])) {
         $description = clean_date($_POST['description']);
         $login = $_SESSION['authorized'];
         $exten = array_pop(explode('.', $_FILES['photo']['name']));
-        $_FILES['photo']['type'] == 'image/jpeg' && $exten == 'jpg';
-            $type = $_FILES['photo']['type']; //image/jpeg
-            $uploads_dir = 'photo';
-            $tmp = $_FILES['photo']['tmp_name'];
-            $p_name = $_FILES['photo']["name"];
         try {
             $idU = $pdo->query("SELECT id FROM users where login = '$login'");
             $idU = $idU->FETCH(PDO::FETCH_ASSOC);
             $idU = $idU['id'];
-            $n_name = $idU . '_' . $p_name;
-            move_uploaded_file($tmp, "$uploads_dir/$n_name");
-            $photo = $n_name;
-            if(!($photo)){$photo = 'Фотография не была загружена';}
+            if (($_FILES['photo'][$error] == 0) && ($_FILES['photo']['type'] == 'image/jpeg' && $exten == 'jpg')) { // берем расширение (pop возвр послед эл-т array) jpg
+                $exten = array_pop(explode('.', $_FILES['photo']['name']));
+                $type = $_FILES['photo']['type']; //image/jpeg
+                    $uploads_dir = 'photo';
+                    $tmp = $_FILES['photo']['tmp_name'];
+                    $p_name = $_FILES['photo']["name"];
+                    $n_name = $idU . '_' . $p_name;
+                    move_uploaded_file($tmp, "$uploads_dir/$n_name");
+                    $photo = $n_name;
+            } else {
+                $photo = 'Фотография не была загружена';
+            }
             $usr = $pdo->query("UPDATE desc_users SET  desc_users.name = '$name',  desc_users.age = '$age',
  desc_users.description ='$description', desc_users.photo = '$photo' WHERE desc_users.id_users = '$idU'");
         } catch (PDOException $e) {
