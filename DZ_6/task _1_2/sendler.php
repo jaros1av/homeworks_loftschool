@@ -1,4 +1,6 @@
 <?php
+require_once "mailers.php";
+require_once "verify_form_google.php";
 function clean_date($value)
 {
     $value = trim($value); // убираем пробелы
@@ -13,6 +15,7 @@ $errortext = 'Заказ не оформлен, проверьте правил�
 if ((!empty($_POST['name']) && (!is_numeric($_POST['name']))) && !empty($_POST['email']) && !empty($_POST['phone'])
     && (!empty($_POST['street']) && (!is_numeric($_POST['street']))) && (!empty($_POST['home']) && is_numeric($_POST['home']))
         && (!empty($_POST['appt']) && is_numeric($_POST['appt'])) && (!empty($_POST['floor']) && is_numeric($_POST['floor']))) {
+
     $login = clean_date($_POST['name']);
     $mail = clean_date($_POST['email']);
     $phone = clean_date($_POST['phone']);
@@ -39,6 +42,9 @@ if ((!empty($_POST['name']) && (!is_numeric($_POST['name']))) && !empty($_POST['
         $callback = 'Перезвонить';
     } else {
         $callback = 'Не перезванивать';
+    }
+    if (!($verify)){
+        $errortext = 'Не пройдена капча!';
     }
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=vp1;charset=utf8', 'root', '');
@@ -89,7 +95,7 @@ if ((!empty($_POST['name']) && (!is_numeric($_POST['name']))) && !empty($_POST['
         $count_orders = $pdo->query("SELECT COUNT(idUsers) FROM Orders WHERE Orders.idUsers = '$idU'");
         $count_order = $count_orders->FETCH(PDO::FETCH_ASSOC);
         $count_order = $count_order['COUNT(idUsers)'];
-        $to = $mail;
+//        $to = $mail;
         $subcect = 'Заказ № ' . $id_ordr;
         $order_msg = 'Спасибо - это ваш ' . $count_order . ' заказ' ;
         $inf_order = 'DarkBeefBurger за 500 рублей, 1 шт';
@@ -97,11 +103,15 @@ if ((!empty($_POST['name']) && (!is_numeric($_POST['name']))) && !empty($_POST['
             'Ваш заказ будет доставлен по адресу: '. '</span>'. '<p> Улица ' . $street . ', дом ' . $home .
             ', квартира ' . $flat . ', этаж ' . $floor .'</p>' . '<p style="margin:10px 0px;">' .
             'Описание заказа: ' . $inf_order . '</p>' . '<p>' . $order_msg.'</p></body></html>';
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-        $headers .="From:info@burgers24.ru\r\n";
-        $headers .= "Reply-To:no-reply@burgers24.ru\r\n";
-        mail($to, $subcect, $message, $headers);
+//        $headers  = 'MIME-Version: 1.0' . "\r\n";
+//        $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+//        $headers .="From:info@burgers24.ru\r\n";
+//        $headers .= "Reply-To:no-reply@burgers24.ru\r\n";
+//        mail($to, $subcect, $message, $headers);
+        // поумолчанию отправляет на туже пояту, что и отправитель. в ка-ве параметра может принимать адрес
+        $mailer = new Mailer();
+        $mailer->setMessage('Заказ с сайта Бургерс', $message);
+        $mailer->sendMail();
     }
     catch (PDOException $e) {
         echo $e->getMessage();

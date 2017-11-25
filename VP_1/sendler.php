@@ -93,6 +93,7 @@ if ((!empty($_POST['name']) && (!is_numeric($_POST['name']))) && !empty($_POST['
         $subcect = 'Заказ № ' . $id_ordr;
         $order_msg = 'Спасибо - это ваш ' . $count_order . ' заказ' ;
         $inf_order = 'DarkBeefBurger за 500 рублей, 1 шт';
+
         $message='<html><head><title>'.$subcect.'</title></head><body><p><span style="font-size:18px;">'.
             'Ваш заказ будет доставлен по адресу: '. '</span>'. '<p> Улица ' . $street . ', дом ' . $home .
             ', квартира ' . $flat . ', этаж ' . $floor .'</p>' . '<p style="margin:10px 0px;">' .
