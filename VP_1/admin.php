@@ -13,7 +13,7 @@
       $BD_data = $pdo->query("SELECT Users.id as ID, Users.name as Name, Users.email as E_mail, Orders.streets 
       as Street, Orders.house as Building, Orders.flat as Flat, Orders.floors as Floor, Orders.needChang as 
       Change_or_Card, Orders.callback as Callback, Orders.comments as Comment FROM Users
-      INNER JOIN Orders ON Users.id = Orders.idUsers;");
+      INNER JOIN Orders ON Users.id = Orders.idUsers");
       $res = $BD_data->FETCHALL(PDO::FETCH_ASSOC);
       echo '<table border="1" style = "text-align:center">';
       echo 'Список пользователей и заказов:' .'<br>' .'<br>';
